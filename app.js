@@ -5,7 +5,7 @@ const PORT = process.env.port ||  8080
 const mongoose = require('mongoose');
 
 
-mongoose.connect(MONGOURI,{
+mongoose.connect("mongodb+srv://vps:gCik5W3FWyvlvQXy@cluster0.jbdvq.mongodb.net/VirtualPoliceStation?retryWrites=true&w=majority",{
     useNewUrlParser:true,
     useUnifiedTopology:true
 })
