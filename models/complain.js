@@ -8,13 +8,6 @@ const complainSchema = new mongoose.Schema({
             required: true,
             unique: true
         },
-        complainant_fname : {
-            type: String,
-         //   required: true,
-        },
-        complainant_lname : {
-            type: String,
-        },
         complainant_ID : {
             type: ObjectId,
             ref:"User",

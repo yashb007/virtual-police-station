@@ -24,7 +24,7 @@ exports.getEventById = (req, res, next, id) => {
 
 
 exports.addEvent = (req,res) => {
-    const {event_name, subject,start_date,end_date, start_time, place ,people_count } = req.body
+    const {applicant_ID , event_name, subject,start_date,end_date, start_time, place ,people_count } = req.body
     
     var num = () =>{
             s4 = () => {
@@ -49,7 +49,7 @@ exports.addEvent = (req,res) => {
         place ,
         people_count,
         event_app_num : num(),
-        applicant_ID : req.user
+        applicant_ID 
     })
 
     event.save().then(event=>{

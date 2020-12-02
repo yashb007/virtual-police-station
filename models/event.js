@@ -8,13 +8,6 @@ const eventSchema = new mongoose.Schema({
             required: true,
             unique: true
         },
-        applicant_fname : {
-            type: String,
-           
-        },
-        applicant_lname : {
-            type: String,
-        },
         applicant_ID : {
             type: ObjectId,
             required: true, 

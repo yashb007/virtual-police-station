@@ -18,20 +18,21 @@ router.post('/signup', controller.signup);
 
 router.post('/logout', controller.signout);
 
+router.post('/getone',controller.getUser)
 router.post('/getall',controller.getAllUsers)
 
-router.post('/:userId/update',controller.updateUser)
+router.post('/update',controller.updateUser)
 
-router.post('/:userId/addFir',addFir)
+router.post('/addFir',addFir)
 
-router.post('/:userId/myfirs',findFirByUserId)
+router.post('/myfirs',findFirByUserId)
 
-router.post('/:userId/addEvent',addEvent)
+router.post('/addEvent',addEvent)
 
-router.post('/:userId/myevents',findEventByUserId)
+router.post('/myevents',findEventByUserId)
 
-router.post('/:userId/addComplain',addComplain)
+router.post('/addComplain',addComplain)
 
-router.post('/:userId/mycomplains',findComplainByUserId)
+router.post('/mycomplains',findComplainByUserId)
 
 module.exports = router;

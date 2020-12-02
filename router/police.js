@@ -15,9 +15,9 @@ router.post('/logout', controller.signout);
 
 router.post('/getall',controller.getAllPolice)
 
-router.post('/:policeId/update',controller.updateUser)
+router.post('/update',controller.updateUser)
 
 
-router.post('/:policeId/myfirs',controller.listAllFirs)
+router.post('/myfirs',controller.listAllFirs)
 
 module.exports = router;

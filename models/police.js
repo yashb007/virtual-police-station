@@ -23,7 +23,7 @@ const policeSchema = new mongoose.Schema({
         required : true
     },
     photo:{
-        type: Buffer
+        type: String
     },
     identity_no:{
         type: String,

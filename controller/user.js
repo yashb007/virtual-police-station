@@ -25,6 +25,19 @@ exports.getUserById = (req, res, next, id) => {
     })
 }
 
+
+exports.getUser = (req, res) => {
+    const id = req.body.id
+    User.findById(id).exec((err, user) => {
+        if (err || !user) {
+            return res.status(400).json({
+                error: "No User  found in db"
+            })
+        }
+       return res.json(user)
+    })
+}
+
 exports.signup = (req,res) =>{
     const {first_name,last_name,age,email,contact,photo,aadhar_no,address,password} = req.body 
     if(!email || !password || !first_name || !age || !contact || !aadhar_no || !address) {
@@ -111,12 +124,11 @@ exports.getAllUsers = (req,res) => {
 }
 
 exports.updateUser = (req,res) =>{
-    const {first_name,last_name,age,email,contact,photo,aadhar_no,address,password} = req.body 
-   
-   
-      bcrypt.hash(password,12).then(hashedpassword=>{
- 
-    User.findByIdAndUpdate(req.user._id, { $set: { first_name,last_name,age,email,contact,photo,aadhar_no,address ,password :hashedpassword } }, { new: true },
+    const {_id,first_name,last_name,age,email,contact,photo,aadhar_no,address} = req.body 
+    
+   console.log(_id)
+     
+    User.findByIdAndUpdate(_id, { $set: { first_name,last_name,age,email,contact,photo,aadhar_no,address   }, },{new : true},
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -124,5 +136,5 @@ exports.updateUser = (req,res) =>{
             }
             res.json({ result, message: "Updation done " })
         })
-})
+
 }

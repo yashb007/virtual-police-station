@@ -16,7 +16,7 @@ exports.getComplainById = (req, res, next, id) => {
 
 
 exports.addComplain = (req,res) => {
-    const {subject , complain_against} = req.body
+    const {subject , complain_against,complainant_ID} = req.body
     
     var num = () =>{
             s4 = () => {
@@ -37,7 +37,7 @@ exports.addComplain = (req,res) => {
         complain_against,
         complain_regtime : new Date,
         complain_num : num(),
-        complainant_ID : req.user
+        complainant_ID 
     })
 
     complain.save().then(complain=>{

@@ -87,15 +87,16 @@ exports.getAllFirs = (req,res) => {
 }
 
 exports.findFirByUserId = (req,res) => {
-    const id = req.user._id;
+    const id = req.body.complainant_ID;
     Fir.find({complainant_ID : id}).then(fir => {
-        res.json(fir)
+        console.log(fir)
+       return res.json(fir)
     })
 }
 
 
 exports.addFir = (req,res) => {
-    const {subject } = req.body
+    const {subject,complainant_ID } = req.body
     
     var num = () =>{
             s4 = () => {
@@ -120,7 +121,7 @@ exports.addFir = (req,res) => {
          subject,
         fir_num : num(),
         fir_regtime : new Date(),
-        complainant_ID : req.user,
+        complainant_ID ,
         police_ID : allot_to._id
     })
 

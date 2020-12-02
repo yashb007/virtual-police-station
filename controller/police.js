@@ -28,10 +28,11 @@ exports.getPoliceById = (req, res, next, id) => {
 
 exports.signup = (req,res) =>{
     const {first_name,last_name,age,email,contact,photo,identity_no,address,password} = req.body 
-    if(!email || !password || !first_name){
-       return res.status(422).json({error:"please add all the fields"})
-    }
-   
+    if(!email || !password || !first_name || !age || !contact || !identity_no ) {
+           res.status(422).json({error:"please add all the fields"})
+        return
+       }
+      
         bcrypt.hash(password,12)
         .then(hashedpassword=>{
               const police = new Police({
@@ -112,12 +113,12 @@ exports.getAllPolice = (req,res) => {
 }
 
 exports.updateUser = (req,res) =>{
-    const {first_name,last_name,age,email,contact,photo,identity_no,address,password} = req.body 
+    const {_id,first_name,last_name,age,email,contact,photo,identity_no,password} = req.body 
    
    
       bcrypt.hash(password,12).then(hashedpassword=>{
  
-    Police.findByIdAndUpdate(req.police._id, { $set: { first_name,last_name,age,email,contact,photo,identity_no,address ,password :hashedpassword } }, { new: true },
+    Police.findByIdAndUpdate(_id, { $set: { first_name,last_name,age,email,contact,photo,identity_no ,password :hashedpassword } }, { new: true },
         (err, result) => {
             if (err) {
                 console.log(err)
@@ -129,10 +130,10 @@ exports.updateUser = (req,res) =>{
 }
 
 exports.listAllFirs = (req,res)=> {
-   
-    const id = req.police._id;
+     console.log(req.body)
+    const id = req.body.police_ID;
     Fir.find({police_ID : id}).then(fir => {
-        res.json(fir)
+       return res.json(fir)
     })
 
 } 
