@@ -10,7 +10,7 @@ const user = require('../models/user');
 
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth:{
-        api_key:"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"
+        api_key:"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"
     }
 }))
 
@@ -84,12 +84,15 @@ exports.signup = (req,res) =>{
               user.save()
               .then(user=>{
                   transporter.sendMail({
-                      to:`${user.name} <${user.email}>`,
-                      from:"bansaly37@gmail.com",
+                      to:`${user.first_name} <${user.email}>`,
+                      from : "yyashpal_be18@thapar.edu",
                       subject:"signup success",
-                      html:"<h1>welcome to instagram</h1>"
-                  })
+                      html:"<h1>welcome to virtual Police station</h1>"
+                  }).then(() => {
+                    console.log("sent")
+                
                   res.json({message:"saved successfully"})
+                  })
               })
               .catch(err=>{
                   console.log(err)

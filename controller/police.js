@@ -9,7 +9,7 @@ const sendgridTransport = require('nodemailer-sendgrid-transport')
 
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth:{
-        api_key:"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"
+        api_key:"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"
     }
 }))
 
@@ -60,12 +60,15 @@ exports.signup = (req,res) =>{
               police.save()
               .then(police=>{
                   transporter.sendMail({
-                      to:`${police.name} <${police.email}>`,
-                      from:"bansaly37@gmail.com",
+                      to:`${police.first_name} <${police.email}>`,
+                      from:"yyashpal_be18@thapar.edu",
                       subject:"signup success",
-                      html:"<h1>welcome to instagram</h1>"
-                  })
-                  res.json({message:"saved successfully"})
+                      html:"<h1>welcome to virtual Police station</h1>"
+                  }).then(() => {
+                    console.log("sent")
+                    res.json({message:"saved successfully"})                
+                  }
+                    )
               })
               .catch(err=>{
                   console.log(err)

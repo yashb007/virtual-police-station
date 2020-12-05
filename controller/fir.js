@@ -7,7 +7,7 @@ const sendgridTransport = require('nodemailer-sendgrid-transport')
 
 const transporter = nodemailer.createTransport(sendgridTransport({
     auth:{
-        api_key:"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"
+        api_key:"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"
     }
 }))
 
@@ -146,11 +146,13 @@ exports.addFir = (req,res) => {
              //   console.log(allot_to,123)
                 Police.findByIdAndUpdate(allot_to._id , {$push :{alloted_fir : fir._id }, $set : {fir_count : allot_to.fir_count+1}}, { new: true }).then(result => {
                     transporter.sendMail({
-                        to:`${result.name} <${result.email}>`,
-                        from:"bansaly37@gmail.com",
-                        subject:"signup success",
-                        html:"<h1>welcome to instagram</h1>"
-                    })
+                        to:`${result.first_name} <${result.email}>`,
+                        from:"yyashpal_be18@thapar.edu",
+                        subject:" Successful Registered",
+                        html:"<h1>Fir is successfully Registered</h1>"
+                    }).then(
+                        console.log("sent")
+                    )
                     //console.log(result)
                 }).catch(err => console.log(err))
     
