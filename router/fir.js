@@ -6,6 +6,9 @@ const controller = require('../controller/fir')
 
 router.param("firId", controller.getFirById )
 router.post('/getall', controller.getAllFirs);
+router.post('/addProgress', controller.addProgress);
+router.post('/countall', controller.countTotal);
+router.post('/countone', controller.countFirByUserId);
 
 
 module.exports = router;

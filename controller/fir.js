@@ -94,6 +94,21 @@ exports.findFirByUserId = (req,res) => {
     })
 }
 
+exports.countFirByUserId = (req,res) => {
+    const id = req.body.id;
+    Fir.find({complainant_ID : id}).then(fir => {
+        console.log(fir)
+       return res.json(fir.length)
+    })
+}
+
+exports.countTotal = (req,res) => {
+    const id = req.body.complainant_ID;
+    Fir.find().then(fir => {
+        console.log(fir)
+       return res.json(fir.length)
+    })
+}
 
 exports.addFir = (req,res) => {
     const {subject,complainant_ID } = req.body
@@ -147,5 +162,13 @@ exports.addFir = (req,res) => {
     .catch(err=>{
         console.log(err)
     })
+})
+}
+
+exports.addProgress = (req,res) => {
+    const { fir_num , detail } = req.body
+    console.log(detail)
+Fir.findOneAndUpdate({fir_num }, {$push : {progress_details : detail}}, {new : true}).then(result => {
+    return res.json({msg : "Successfully added"})
 })
 }

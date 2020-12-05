@@ -92,11 +92,35 @@ exports.listNotPermiEvents = (req,res)=> {
     })
 }
 
+exports.countEventByUserId = (req,res) => {
+    const id = req.body.id;
+    Event.find({applicant_ID : id}).then(fir => {
+        console.log(fir)
+       return res.json(fir.length)
+    })
+}
+
+exports.countTotal = (req,res) => {
+    const id = req.body.applicant_ID;
+    Event.find().then(fir => {
+        console.log(fir)
+       return res.json(fir.length)
+    })
+}
+
+
+
 exports.grantpermission = (req,res) =>{
-    const event = req.event
-    const user = event.applicant_ID
-   
-    Event.findByIdAndUpdate(event._id,{$set :{ permission : true}}).then(result => {
+   console.log(req.body)
+    const id = req.body.id
+    const user = req.body.curr.user
+console.log(user)
+console.log(id,12)
+console.log(user.first_name,123)
+    Event.findByIdAndUpdate(id,{$set :{ permission : true}}).then(result => {
+     console.log(result)
+     
+console.log(user.first_name,124)
         transporter.sendMail({
             to:`${user.first_name} <${user.email}>`,
             from:"bansaly37@gmail.com",

@@ -1,9 +1,11 @@
 const mongoose = require('mongoose')
 const User = mongoose.model("User")
+const Aadhar = mongoose.model("Aadhar")
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt');
 const nodemailer = require('nodemailer')
-const sendgridTransport = require('nodemailer-sendgrid-transport')
+const sendgridTransport = require('nodemailer-sendgrid-transport');
+const user = require('../models/user');
 
 
 const transporter = nodemailer.createTransport(sendgridTransport({
@@ -28,13 +30,15 @@ exports.getUserById = (req, res, next, id) => {
 
 exports.getUser = (req, res) => {
     const id = req.body.id
+    console.log(id,1234)
     User.findById(id).exec((err, user) => {
         if (err || !user) {
             return res.status(400).json({
                 error: "No User  found in db"
             })
         }
-       return res.json(user)
+        console.log(user,123)
+       return res.json({user})
     })
 }
 
@@ -45,6 +49,24 @@ exports.signup = (req,res) =>{
      return
     }
    
+    
+    if(password.length < 6){
+        return res.json({error : "Password must be of length 6 or more"})
+    }
+
+   user.findOne({email}).then(us => {
+       console.log(us)
+       if(us){
+        return res.json({error  : "This email is already registered"})
+       }
+   
+
+    Aadhar.findOne({aadhar_no}).then(ad => {
+        console.log(ad)
+        if(!ad){
+           return res.json({error  : "Please enter valid aadhar card no"})
+        }
+
         bcrypt.hash(password,12)
         .then(hashedpassword=>{
               const user = new User({
@@ -76,6 +98,10 @@ exports.signup = (req,res) =>{
     .catch(err=>{
       console.log(err)
     })
+
+})
+})
+
 }
 
 exports.signin = (req,res)=>{
@@ -94,6 +120,8 @@ exports.signin = (req,res)=>{
                 // res.json({message:"successfully signed in"})
                const token = jwt.sign({_id:savedUser._id},'software')
             //   const {_id,name,email,followers,following,pic} = savedUser
+            
+            res.cookie("token", token, {expire : new Date() +9999})
                res.json({token,savedUser})
             }
             else{

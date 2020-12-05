@@ -23,6 +23,7 @@ require('./models/user')
  require('./models/fir')
  require('./models/event')
  require('./models/complain')
+ require('./models/aadhar')
  app.use(cors())
  app.use(express.json())
  app.use(bodyParser.json())
@@ -32,6 +33,7 @@ require('./models/user')
  app.use('/fir',require('./router/fir'))
  app.use('/event',require('./router/event'))
  app.use('/complain',require('./router/complain'))
+ app.use('/ad',require('./router/aadhar'))
 
 
 

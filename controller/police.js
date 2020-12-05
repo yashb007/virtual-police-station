@@ -32,7 +32,17 @@ exports.signup = (req,res) =>{
            res.status(422).json({error:"please add all the fields"})
         return
        }
-      
+    
+       Police.findOne({email}).then(us => {
+        console.log(us)
+        if(us){
+         return res.json({error  : "This email is already registered"})
+        }
+    
+       
+       if(password.length < 6){
+        return res.json({error : "Password must be of length 6 or more"})
+    }
         bcrypt.hash(password,12)
         .then(hashedpassword=>{
               const police = new Police({
@@ -64,7 +74,7 @@ exports.signup = (req,res) =>{
     .catch(err=>{
       console.log(err)
     })
-}
+})}
 
 exports.signin = (req,res)=>{
     const {email,password} = req.body
@@ -82,6 +92,7 @@ exports.signin = (req,res)=>{
                 // res.json({message:"successfully signed in"})
                const token = jwt.sign({_id:savedUser._id},'software')
             //   const {_id,name,email,followers,following,pic} = savedUser
+            res.cookie("token", token, {expire : new Date() +9999})
                res.json({token,savedUser})
             }
             else{
