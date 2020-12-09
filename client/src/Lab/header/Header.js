@@ -13,7 +13,7 @@ class Header extends Component {
 
     
     logout = ()=>{
-        fetch("http://localhost:8080/police/logout",{
+        fetch("/police/logout",{
       method:"Post",
       headers:{
         "Content-Type":"application/json"

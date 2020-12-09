@@ -18,7 +18,7 @@ class Adashboard extends Component{
         const data=localStorage.getItem('user');
         const td=JSON.parse(data);
    
-        fetch("http://localhost:8080/fir/countall",{
+        fetch("/fir/countall",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"
@@ -36,7 +36,7 @@ class Adashboard extends Component{
             }
             })
         
-            fetch("http://localhost:8080/event/countall",{
+            fetch("/event/countall",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"

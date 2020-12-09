@@ -38,7 +38,7 @@ class AddDoctor extends Component{
     uploadPic = (e) => {
         e.preventDefault();
         console.log(this.state.applicant_ID)
-        fetch("http://localhost:8080/user/addEvent",{
+        fetch("/user/addEvent",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"

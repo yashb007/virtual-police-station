@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors')
 const app = express()
+require('dotenv').config()
 const PORT = process.env.port ||  8080
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser')
@@ -37,13 +38,13 @@ require('./models/user')
 
 
 
-// if(process.env.NODE_ENV=="production"){
-//     app.use(Express.static('client/build'))
-//     const path = require('path')
-//     app.get('*',(req,rse)=>{
-//         res.sendFile(path.resolve(__dirname,'client','build','index.html'))
-//     })
-// }
+if(process.env.NODE_ENV=="production"){
+    app.use(Express.static('client/build'))
+    const path = require('path')
+    app.get('*',(req,rse)=>{
+        res.sendFile(path.resolve(__dirname,'client','build','index.html'))
+    })
+}
 
 app.listen(PORT, () => {
     console.log(`Server is started at ${PORT}`)

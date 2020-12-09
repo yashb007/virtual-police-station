@@ -31,7 +31,7 @@ changeHandle=(e)=>{
 SubmitHandle=(e)=>{
   console.log(this.state)
     e.preventDefault();
-      fetch("http://localhost:8080/fir/addProgress",{
+      fetch("/fir/addProgress",{
       method:"Post",
       headers:{
         "Content-Type":"application/json"

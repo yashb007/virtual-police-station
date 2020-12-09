@@ -17,7 +17,7 @@ class Viewfir extends Component {
 
     componentDidMount(){
         
-        fetch("http://localhost:8080/fir/getall",{
+        fetch("/fir/getall",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"
@@ -61,7 +61,7 @@ Model1Ref = ({handleShow}) => {
    
  const id = this.state.firs[index].complainant_ID
     console.log(id)
-    fetch("http://localhost:8080/user/getOne",{
+    fetch("/user/getOne",{
         method:"Post",
         headers:{
           "Content-Type":"application/json"

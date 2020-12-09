@@ -16,7 +16,7 @@ class Lab extends Component {
         
         console.log(this.state.police_ID)
 
-        fetch("http://localhost:8080/police/myfirs",{
+        fetch("/police/myfirs",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"
