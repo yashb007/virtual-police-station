@@ -18,7 +18,7 @@ changeHandle=(e)=>{
 
 SubmitHandle=(e)=>{
   e.preventDefault();
-    fetch("/user/login",{
+    fetch("http://localhost:8080/user/login",{
     method:"Post",
     headers:{
       "Content-Type":"application/json"

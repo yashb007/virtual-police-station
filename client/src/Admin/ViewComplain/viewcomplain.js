@@ -16,8 +16,8 @@ class Viewcomplain extends Component {
     }
 
     componentDidMount(){
-        
-        fetch("/complain/getall",{
+        M.AutoInit();
+        fetch("http://localhost:8080/complain/getall",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"
@@ -61,7 +61,7 @@ Model1Ref = ({handleShow}) => {
    
  const id = this.state.complains[index].complainant_ID
     console.log(id)
-    fetch("/user/getOne",{
+    fetch("http://localhost:8080/user/getOne",{
         method:"Post",
         headers:{
           "Content-Type":"application/json"

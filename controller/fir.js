@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const Fir = mongoose.model("Fir")
 const Police = mongoose.model("Police")
+const User = mongoose.model("User")
 const nodemailer = require('nodemailer')
 const sendgridTransport = require('nodemailer-sendgrid-transport')
 
@@ -142,22 +143,31 @@ exports.addFir = (req,res) => {
 
     fir.save().then(fir=>{
            // console.log(fir)
-       
+               
+                User.findById(complainant_ID).then(res => {
+                    transporter.sendMail({
+                        to:`${res.first_name} <${res.email}>`,
+                        from:"7kaustub7@gmail.com",
+                        subject:" Successful Registered",
+                        html:"<h1> Fir is Successfully Registered.</h1>"
+                   
+                })})
+
              //   console.log(allot_to,123)
                 Police.findByIdAndUpdate(allot_to._id , {$push :{alloted_fir : fir._id }, $set : {fir_count : allot_to.fir_count+1}}, { new: true }).then(result => {
                     transporter.sendMail({
                         to:`${result.first_name} <${result.email}>`,
-                        from:"yyashpal_be18@thapar.edu",
+                        from:"7kaustub7@gmail.com",
                         subject:" Successful Registered",
-                        html:"<h1>Fir is successfully Registered</h1>"
+                        html:"<h1>There is a Fir alloted to you.</h1>"
                     }).then(
                         console.log("sent")
                     )
                     //console.log(result)
                 }).catch(err => console.log(err))
-    
+                
        // console.log(fir.complainant_ID.first_name)
-        res.json({message:"saved successfully",fir})
+     return   res.json({message:"saved successfully",fir})
 
     
             })    

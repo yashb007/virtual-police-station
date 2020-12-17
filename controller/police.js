@@ -61,7 +61,7 @@ exports.signup = (req,res) =>{
               .then(police=>{
                   transporter.sendMail({
                       to:`${police.first_name} <${police.email}>`,
-                      from:"yyashpal_be18@thapar.edu",
+                      from:"7kaustub7@gmail.com",
                       subject:"signup success",
                       html:"<h1>welcome to virtual Police station</h1>"
                   }).then(() => {

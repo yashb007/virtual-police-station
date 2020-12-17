@@ -16,8 +16,8 @@ class Viewcomplain extends Component {
     }
 
     componentDidMount(){
-        
-        fetch("/event/getall",{
+          M.AutoInit();
+        fetch("http://localhost:8080/event/getall",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"
@@ -61,7 +61,7 @@ Model1Ref = ({handleShow}) => {
    
  const id = this.state.events[index].applicant_ID
     console.log(id)
-    fetch("/user/getOne",{
+    fetch("http://localhost:8080/user/getOne",{
         method:"Post",
         headers:{
           "Content-Type":"application/json"
@@ -91,7 +91,7 @@ eventApprove = (event,eve) =>{
   
  var id = eve.applicant_ID
  var user = {}
- fetch("/user/getOne",{
+ fetch("http://localhost:8080/user/getOne",{
   method:"Post",
   headers:{
     "Content-Type":"application/json"
@@ -114,7 +114,7 @@ eventApprove = (event,eve) =>{
  console.log(id,2)
  const curr = user
  console.log(curr,3)
- fetch("/event/approve",{
+ fetch("http://localhost:8080/event/approve",{
      method:"Post",
      headers:{
        "Content-Type":"application/json"

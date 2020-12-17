@@ -21,7 +21,7 @@ class ViewFir extends Component {
         
       M.AutoInit();
         
-        fetch("/user/myfirs",{
+        fetch("http://localhost:8080/user/myfirs",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"

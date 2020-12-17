@@ -59,7 +59,7 @@ uploadPic = (e) => {
      
   console.log(this.state._id);
   console.log("123")
-   fetch("/user/update",{
+   fetch("http://localhost:8080/user/update",{
     method:"Post",
     headers:{
       "Content-Type":"application/json"

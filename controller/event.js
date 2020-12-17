@@ -123,8 +123,8 @@ console.log(user.first_name,123)
 console.log(user.first_name,124)
         transporter.sendMail({
             to:`${user.first_name} <${user.email}>`,
-            from:"bansaly37@gmail.com",
-            subject:"signup success",
+            from:"7kaustub7@gmail.com",
+            subject:"Event Permission",
             html:"<h1>successfully Granted</h1>"
         })
         return res.json({"msg": "successfully Granted"})

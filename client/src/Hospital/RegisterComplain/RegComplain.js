@@ -36,7 +36,7 @@ class RegComplain extends Component {
     uploadPic = (e) => {
         e.preventDefault();
         console.log(this.state.complainant_ID)
-        fetch("/user/addComplain",{
+        fetch("http://localhost:8080/user/addComplain",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"

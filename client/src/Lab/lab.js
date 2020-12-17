@@ -4,6 +4,8 @@ import image2 from './img/happy-bunch (2).png';
 import Header from './header/Header';
 import './lab.css';
 import AddUserCard from './addUserCard';
+import M from 'materialize-css';
+
 class Lab extends Component {
     
     
@@ -13,10 +15,10 @@ class Lab extends Component {
     }
 
     componentDidMount(){
-        
+        M.AutoInit();
         console.log(this.state.police_ID)
 
-        fetch("/police/myfirs",{
+        fetch("http://localhost:8080/police/myfirs",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"

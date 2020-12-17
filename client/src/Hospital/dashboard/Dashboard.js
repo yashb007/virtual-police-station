@@ -43,7 +43,7 @@ class Hdashboard extends Component{
         })
         
         console.log(this.state)
-        fetch("/fir/countone",{
+        fetch("http://localhost:8080/fir/countone",{
     method:"Post",
     headers:{
       "Content-Type":"application/json"
@@ -61,7 +61,7 @@ class Hdashboard extends Component{
     }
     })
 
-    fetch("/event/countone",{
+    fetch("http://localhost:8080/event/countone",{
     method:"Post",
     headers:{
       "Content-Type":"application/json"

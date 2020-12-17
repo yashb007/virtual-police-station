@@ -71,7 +71,7 @@ onLoginClick = (event) => {
  
 const id = this.props.fir.complainant_ID
   console.log(id)
-  fetch("/user/getOne",{
+  fetch("http://localhost:8080/user/getOne",{
       method:"Post",
       headers:{
         "Content-Type":"application/json"

@@ -15,10 +15,11 @@ class Adashboard extends Component{
     }
 
     componentDidMount(){
+      M.AutoInit();
         const data=localStorage.getItem('user');
         const td=JSON.parse(data);
    
-        fetch("/fir/countall",{
+        fetch("http://localhost:8080/fir/countall",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"
@@ -36,7 +37,7 @@ class Adashboard extends Component{
             }
             })
         
-            fetch("/event/countall",{
+            fetch("http://localhost:8080/event/countall",{
             method:"Post",
             headers:{
               "Content-Type":"application/json"

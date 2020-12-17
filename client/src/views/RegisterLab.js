@@ -40,7 +40,7 @@ class RegisterLab extends Component {
        
     console.log(this.state);
     console.log("123")
-    fetch("/police/signup",{
+    fetch("http://localhost:8080/police/signup",{
       method:"Post",
       headers:{
         "Content-Type":"application/json"

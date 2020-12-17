@@ -19,7 +19,7 @@ changeHandle=(e)=>{
 
 SubmitHandle=(e)=>{
   e.preventDefault();
-    fetch("/admin/login",{
+    fetch("http://localhost:8080/admin/login",{
     method:"Post",
     headers:{
       "Content-Type":"application/json"
